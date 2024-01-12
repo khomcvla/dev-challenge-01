@@ -4,6 +4,7 @@ using dev_challenge_01.Interfaces;
 using dev_challenge_01.Models;
 using dev_challenge_01.Repository;
 using dev_challenge_01.Services;
+using dev_challenge_01.Utils.Middlewares;
 using TinyCsvParser;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    })
+    .AddJsonOptions(options => { options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; })
     .AddNewtonsoftJson(options =>
     {
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -53,7 +51,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+// Authentication & Authorization
+//app.UseAuthorization();
+
+// Middlewares
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

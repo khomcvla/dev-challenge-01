@@ -10,14 +10,9 @@ namespace dev_challenge_01.Controllers;
 public class FacilityController : ControllerBase
 {
     private readonly IFacilityService _facilityService;
-    private readonly ILogger<FacilityController> _logger;
 
-    public FacilityController(
-        IFacilityService facilityService,
-        ILogger<FacilityController> logger
-    )
+    public FacilityController(IFacilityService facilityService)
     {
-        _logger = logger;
         _facilityService = facilityService;
     }
 
@@ -30,6 +25,18 @@ public class FacilityController : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var response = await _facilityService.GetAll();
+        return StatusCode(response.StatusCode, response.Value);
+    }
+
+    //POST
+    [HttpPost("api/trucks")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Facility>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorDetailsResponse))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorDetailsResponse))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorDetailsResponse))]
+    public async Task<IActionResult> GetFacilities([FromBody] InputPostDto inputPostDto)
+    {
+        var response = await _facilityService.GetFacilities(inputPostDto);
         return StatusCode(response.StatusCode, response.Value);
     }
 }

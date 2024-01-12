@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace dev_challenge_01.Utils.Responses;
 
-public class ErrorDetails
+public class ErrorDetailsResponse
 {
     public string Message { get; }
     public List<object> Errors { get; }
@@ -12,31 +12,31 @@ public class ErrorDetails
         return JsonSerializer.Serialize(this);
     }
 
-    public ErrorDetails(string message, List<Tuple<string, string>> errors)
+    public ErrorDetailsResponse(string message, List<Tuple<string, string>> errors)
     {
         Message = message;
         Errors = new List<object>(errors);
     }
 
-    public ErrorDetails(string message, List<Tuple<string, string, string>> errors)
+    public ErrorDetailsResponse(string message, List<Tuple<string, string, string>> errors)
     {
         Message = message;
         Errors = new List<object>(errors);
     }
 
-    public ErrorDetails(string message, List<int> errors)
+    public ErrorDetailsResponse(string message, List<int> errors)
     {
         Message = message;
         Errors = errors.ConvertAll(x => (object)x).ToList();
     }
 
-    public ErrorDetails(string message, List<string> errors)
+    public ErrorDetailsResponse(string message, List<string> errors)
     {
         Message = message;
         Errors = new List<object>(errors);
     }
 
-    public ErrorDetails(string message, params string[] errors)
+    public ErrorDetailsResponse(string message, params string[] errors)
     {
         Message = message;
         Errors = new List<object>(errors.ToList());

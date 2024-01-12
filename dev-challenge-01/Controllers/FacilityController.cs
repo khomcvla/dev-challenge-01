@@ -1,6 +1,6 @@
-using dev_challenge_01.Data.Models;
 using dev_challenge_01.Dtos;
 using dev_challenge_01.Interfaces;
+using dev_challenge_01.Models;
 using dev_challenge_01.Utils.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +24,9 @@ public class FacilityController : ControllerBase
     //GET
     [HttpGet("api/trucks")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Facility>))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorDetails))]
-    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorDetails))]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorDetails))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorDetailsResponse))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorDetailsResponse))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorDetailsResponse))]
     public async Task<IActionResult> GetAll()
     {
         var response = await _facilityService.GetAll();

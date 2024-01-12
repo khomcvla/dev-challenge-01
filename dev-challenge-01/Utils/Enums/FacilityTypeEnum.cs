@@ -1,7 +1,7 @@
 namespace dev_challenge_01.Utils.Enums;
 
-public enum FacilityType
+public enum FacilityTypeEnum
 {
-    Push_Cart,
+    PushCart,
     Truck
 }

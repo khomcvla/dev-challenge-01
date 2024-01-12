@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
-using dev_challenge_01.Data.Models;
 using dev_challenge_01.Interfaces;
+using dev_challenge_01.Models;
 using dev_challenge_01.Repository;
 using dev_challenge_01.Services;
 using TinyCsvParser;
@@ -31,6 +31,8 @@ var result = csvParser
     .ReadFromFile("./Data/Mobile_Food_Facility_Permit.csv", Encoding.ASCII)
     .ToList();
 var facilities = result.Select(r => r.Result).ToList();
+
+//TODO: ^^^ check if result has no errors ^^^
 
 builder.Services.AddScoped<IFacilityService, FacilityService>();
 builder.Services.AddSingleton<IFacilityRepository>(new FacilityRepository(facilities));

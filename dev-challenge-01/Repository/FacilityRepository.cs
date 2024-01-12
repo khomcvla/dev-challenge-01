@@ -1,5 +1,5 @@
-using dev_challenge_01.Data.Models;
 using dev_challenge_01.Interfaces;
+using dev_challenge_01.Models;
 
 namespace dev_challenge_01.Repository;
 

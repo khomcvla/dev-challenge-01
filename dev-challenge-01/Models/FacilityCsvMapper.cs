@@ -12,7 +12,12 @@ public class FacilityCsvMapper : CsvMapping<Facility>
     {
         MapProperty(0, x => x.LocationId);
         MapProperty(1, x => x.Applicant);
-        MapProperty(2, x => x.FacilityType, new NullableBoolConverter("Truck", "Push Cart", StringComparison.InvariantCulture));
+
+        //NOTE: Now it works like IsTruck? -> true or false
+        MapProperty(2, x => x.IsTruck, new NullableBoolConverter("Truck", "Push Cart", StringComparison.InvariantCulture));
+        //TODO: change to FacilityTypeEnum
+        // MapProperty(2, x => x.FacilityType, new NullableEnumConverter<FacilityTypeEnum>(true));
+
         MapProperty(3, x => x.Cnn);
         MapProperty(4, x => x.LocationDescription);
         MapProperty(5, x => x.Address);

@@ -7,9 +7,10 @@ public class Facility
     public int LocationId { get; set; }
     public string Applicant { get; set; }
 
-    //NOTE: Now it works like IsTruck? -> true or falce
+    //NOTE: Now it works like IsTruck? -> true or false
+    public bool? IsTruck { get; set; }
     //TODO: change to FacilityTypeEnum
-    public bool? FacilityType { get; set; }
+    // public FacilityTypeEnum? FacilityType { get; set; }
 
     public int Cnn { get; set; }
     public string? LocationDescription { get; set; }
